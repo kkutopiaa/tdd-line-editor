@@ -16,3 +16,8 @@
 - 拖动控制点时，在线段上增加锚点
 - 双击锚点时，删除锚点
 
+## 测试方式
+项目根目录下，
+- 使用 `npx vitest` 命令运行测试。
+- 或使用 `npm exec -- vitest run -t "should add anchor to line editor" test/line-editor.test.ts` 命令运行特定测试。
+
