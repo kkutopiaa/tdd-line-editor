@@ -34,6 +34,16 @@ describe('Line editor', () => {
     });
 
     // TODO update control point when line update
+    it('should update control position when line update', () => {
+        let line = new Konva.Line({points: [10, 10, 30, 30]})
+        let editor = new LineEditor();
+        editor.attach(line);
+
+        line.points([40, 40, 60, 60]);
+
+        expect(editor.findOne('.1-control').getAttrs()).toMatchObject({x: 50, y: 50});
+    });
+
     // TODO change line points when dragging anchor
     // TODO add new anchor on editor when dragging control point
     // TODO remove anchor when double click anchor
