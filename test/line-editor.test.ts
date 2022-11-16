@@ -25,7 +25,6 @@ describe('Line editor', () => {
     });
 
 
-    // TODO set control point on line editor
     it('should add control point to line editor', () => {
         let line = new Konva.Line({points: [10, 10, 30, 30]})
         let editor = new LineEditor();
