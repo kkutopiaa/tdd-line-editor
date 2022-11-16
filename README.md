@@ -21,3 +21,6 @@
 - 使用 `npx vitest` 命令运行测试。
 - 或使用 `npm exec -- vitest run -t "should add anchor to line editor" test/line-editor.test.ts` 命令运行特定测试。
 
+## 运行方式
+项目根目录下，
+- 使用 `npm start` 启动项目。
