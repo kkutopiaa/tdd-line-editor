@@ -40,6 +40,10 @@ export class LineEditor extends Konva.Group {
                 points[index * 2] = e.target.x();
                 points[index * 2 + 1] = e.target.y();
                 this.line!.points(points);
+            }).on('dbclick', () => {
+                let points = this.line!.points();
+                points.splice(index * 2, 2);
+                this.line!.points(points);
             });
         } else {
             point.on('dragmove', (e) => {
