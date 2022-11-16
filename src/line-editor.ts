@@ -9,14 +9,13 @@ export class LineEditor extends Konva.Group {
         let previous = -1;
 
         for (let i = 0; i < points.length / 2; i++) {
-            this.add(new Konva.Circle({name: `${i}-anchor`, radius: 10, x: points[i * 2], y: points[i * 2 + 1]}));
+            this.create(`${i}-anchor`).setAttrs({x: points[i * 2], y: points[i * 2 + 1]});
             if (previous !== -1) {
-                this.add(new Konva.Circle({
-                    name: `${i}-control`,
-                    radius: 10,
-                    x: points[previous * 2] + (points[i * 2] - points[previous * 2]) / 2,
-                    y: points[previous * 2 + 1] + (points[i * 2 + 1] - points[previous * 2 + 1]) / 2,
-                }));
+                this.create(`${i}-control`)
+                    .setAttrs({
+                        x: points[previous * 2] + (points[i * 2] - points[previous * 2]) / 2,
+                        y: points[previous * 2 + 1] + (points[i * 2 + 1] - points[previous * 2 + 1]) / 2,
+                    });
             }
             previous = i;
         }
@@ -41,6 +40,13 @@ export class LineEditor extends Konva.Group {
             }
             previous = i;
         }
-
     }
+
+
+    private create(name: string) {
+        let point = new Konva.Circle({name, radius: 10});
+        this.add(point);
+        return point;
+    }
+
 }
