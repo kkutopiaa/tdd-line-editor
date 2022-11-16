@@ -72,6 +72,15 @@ describe('Line editor', () => {
         expect(editor.findOne('.2-control').getAttrs()).toMatchObject({x: 27.5, y: 30});
     });
 
-    // TODO remove anchor when double click anchor
+    it('should remove anchor when double click', () => {
+        let line = new Konva.Line({points: [10, 10, 20, 20, 30, 30]})
+        let editor = new LineEditor();
+        editor.attach(line);
+
+        let anchor = editor.findOne(`.1-anchor`);
+        anchor.fire('dbclick', {} as MouseEvent);
+
+        expect(line.points()).toEqual([10, 10, 30, 30]);
+    });
 
 })
