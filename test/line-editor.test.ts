@@ -54,6 +54,7 @@ describe('Line editor', () => {
         anchor.x(100).y(100);
         anchor.fire('dragmove', {} as DragEvent);
         expect(line.points()).toEqual([10, 10, 100, 100]);
+        expect(editor.findOne('.1-control').getAttrs()).toMatchObject({x: 55, y: 55});
     });
 
     // TODO add new anchor on editor when dragging control point
