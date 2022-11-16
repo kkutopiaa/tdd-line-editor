@@ -9,9 +9,9 @@ export class LineEditor extends Konva.Group {
         let previous = -1;
 
         for (let i = 0; i < points.length / 2; i++) {
-            this.create(`${i}-anchor`).setAttrs({x: points[i * 2], y: points[i * 2 + 1]});
+            this.get(`${i}-anchor`).setAttrs({x: points[i * 2], y: points[i * 2 + 1]});
             if (previous !== -1) {
-                this.create(`${i}-control`)
+                this.get(`${i}-control`)
                     .setAttrs({
                         x: points[previous * 2] + (points[i * 2] - points[previous * 2]) / 2,
                         y: points[previous * 2 + 1] + (points[i * 2 + 1] - points[previous * 2 + 1]) / 2,
@@ -31,9 +31,9 @@ export class LineEditor extends Konva.Group {
         let points = this.line!.points();
         let previous = -1;
         for (let i = 0; i < points.length / 2; i++) {
-            this.findOne(`.${i}-anchor`).setAttrs({x: points[i * 2], y: points[i * 2 + 1]});
+            this.get(`${i}-anchor`).setAttrs({x: points[i * 2], y: points[i * 2 + 1]});
             if (previous !== -1) {
-                this.findOne(`.${i}-control`).setAttrs({
+                this.get(`${i}-control`).setAttrs({
                     x: points[previous * 2] + (points[i * 2] - points[previous * 2]) / 2,
                     y: points[previous * 2 + 1] + (points[i * 2 + 1] - points[previous * 2 + 1]) / 2,
                 });
@@ -42,6 +42,9 @@ export class LineEditor extends Konva.Group {
         }
     }
 
+    private get(name: string) {
+        return this.findOne(`.${name}`) || this.create(name);
+    }
 
     private create(name: string) {
         let point = new Konva.Circle({name, radius: 10});
