@@ -68,6 +68,8 @@ describe('Line editor', () => {
         control.x(25).y(30);
         control.fire('dragmove', {} as DragEvent);
         expect(line.points()).toEqual([10, 10, 25, 30, 30, 30]);
+        expect(editor.findOne('.1-control').getAttrs()).toMatchObject({x: 17.5, y: 20});
+        expect(editor.findOne('.2-control').getAttrs()).toMatchObject({x: 27.5, y: 30});
     });
 
     // TODO remove anchor when double click anchor
