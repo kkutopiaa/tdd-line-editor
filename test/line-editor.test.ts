@@ -82,7 +82,7 @@ describe('Line editor', () => {
 
         expect(line.points()).toEqual([10, 10, 30, 30]);
         expect(editor.findOne('.1-anchor').getAttrs()).toMatchObject({x: 30, y: 30});
-        expect(editor.findOne('.2-anchor').getAttrs()).toBeUndefined();
+        expect(editor.findOne('.2-anchor')).toBeUndefined();
 
     });
 

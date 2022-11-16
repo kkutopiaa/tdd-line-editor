@@ -3,6 +3,7 @@ import Konva from "konva";
 export class LineEditor extends Konva.Group {
 
     private line?: Konva.Line;
+    private pointsCount: number = 0;
 
     attach(line: Konva.Line) {
         this.line = line;
@@ -26,6 +27,13 @@ export class LineEditor extends Konva.Group {
             }
             previous = i;
         }
+
+        for (let i = points.length / 2; i < this.pointsCount; i++) {
+            this.findOne(`.${i}-anchor`).destroy();
+            this.findOne(`.${i}-control`).destroy();
+        }
+
+        this.pointsCount = points.length / 2;
     }
 
     private get(index: number, type: string) {
