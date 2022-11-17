@@ -48,8 +48,14 @@ export class LineEditor extends Konva.Group {
                 points[index * 2] = e.target.x();
                 points[index * 2 + 1] = e.target.y();
                 this.line!.points(points);
-            }).on('dblclick', () => {
+            }).on('dblclick', (e: Konva.KonvaEventObject<MouseEvent>) => {
                 let points = this.line!.points();
+                let firstIndex = 0;
+                let lastIndex = points.length - 3;
+                if (e.target.index === firstIndex || e.target.index === lastIndex) {
+                    return;
+                }
+
                 points.splice(index * 2, 2);
                 this.line!.points(points);
             }).setAttrs({
