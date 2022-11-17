@@ -41,7 +41,7 @@ export class LineEditor extends Konva.Group {
     }
 
     private create(index: number, type: string) {
-        let point = new Konva.Circle({name: `${index}-${type}`, radius: 10, draggable: true, fill: 'red'});
+        let point = new Konva.Circle({name: `${index}-${type}`, radius: 10, draggable: true});
         if (type === 'anchor') {
             point.on('dragmove', (e) => {
                 let points = this.line!.points();
@@ -52,6 +52,8 @@ export class LineEditor extends Konva.Group {
                 let points = this.line!.points();
                 points.splice(index * 2, 2);
                 this.line!.points(points);
+            }).setAttrs({
+                fill: 'red'
             });
         } else {
             point.on('dragmove', (e) => {
@@ -60,6 +62,9 @@ export class LineEditor extends Konva.Group {
                 this.line!.points(points);
                 e.target.stopDrag();
                 e.target.getParent().findOne(`.${index}-anchor`).startDrag();
+            }).setAttrs({
+                fill: 'blue',
+                radius: 8
             });
         }
         this.add(point);
