@@ -24,3 +24,6 @@
 ## 运行方式
 项目根目录下，
 - 使用 `npm start` 启动项目。
+
+## 运行效果截图：
+![](public/line-editor.png)
